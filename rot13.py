@@ -1,10 +1,6 @@
-import string
-alpha = string.ascii_uppercase + ' '
-r13_alpha = "NOPQRSTUVWXYZABCDEFGHIJKLM "
-
+#ROT13 Shifts the alphabet by 13 characters
 def encrypt(plaintext):                                                     
-    plaintext = plaintext.upper()
-    return ''.join([r13_alpha[alpha.index(x)] for x in plaintext])
+    return ''.join([chr(((ord(x)-52) % 26) + 65) for x in plaintext.upper() if x in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'])
+
 def decrypt(cipher):
-    cipher = cipher.upper()
-    return ''.join([alpha[r13_alpha.index(x)] for x in cipher])
+    return encrypt(cipher)

@@ -1,10 +1,7 @@
-import string
-alpha = string.ascii_uppercase + " "
-r_alpha = string.ascii_uppercase[::-1] + " "
-
+#The Atbash cipher swaps the first letter of an alphabet with the last,
+#the second letter with the second-to-last etc.
 def encrypt(plaintext):
-    plaintext = plaintext.upper()
-    return ''.join([r_alpha[alpha.index(x)] for x in plaintext])
+    return ''.join([chr(65 + (90 - ord(x))) for x in plaintext.upper() if x in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'])
 
 def decrypt(cipher):
-    return ''.join([alpha[r_alpha.index(x)] for x in cipher])
+    return encrypt(cipher)
