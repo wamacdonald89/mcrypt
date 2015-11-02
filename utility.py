@@ -1,6 +1,6 @@
 from math import log10
 
-def score_fitness(texts, ngram_file):
+def score_fitness(texts, ngram_file='english_quadgrams.txt'):
     if type(texts) is str:
         texts = [texts]
     ngrams = {}
