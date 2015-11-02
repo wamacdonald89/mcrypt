@@ -7,4 +7,4 @@ Classical Ciphers:
 
 1. Atbash
 2. Rot13
-3. Caeser (with known offset)
+3. Caeser (with known and unknown offset)
