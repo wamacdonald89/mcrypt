@@ -20,5 +20,5 @@ def score_fitness(texts, ngram_file):
                 score += ngrams[text[i:i + L]]
             else:
                 score += fl
-                scores.append(score)
+        scores.append(score)
     return scores
