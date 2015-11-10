@@ -1,8 +1,7 @@
-#Crypto Challenges
 import binascii
 import argparse
 #utility
-
+#Deprecated
 def hex2b64(h):
     return binascii.b2a_base64(hex2bin(h))
 
