@@ -1,5 +1,8 @@
 from math import log10
 
+def normalize(text):
+    return ''.join([x for x in text if x.isalpha()]).upper()
+
 def score_fitness(texts, ngram_file='english_quadgrams.txt'):
     if type(texts) is str:
         texts = [texts]
