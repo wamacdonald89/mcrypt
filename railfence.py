@@ -11,5 +11,19 @@ def encrypt(plaintext,n):
     return ''.join(rails)
 
 def decrypt(cipher,n):
-    #TODO
-    return cipher
+    cipherlen = len(cipher)
+    parts = [''] * n
+    count = cycle(range(0,n) + range(1,n-1)[::-1])
+    for i in cipher:
+        index = count.next()
+        parts[index] += 'x'
+    for i in range(0,n):
+        parts[i] = cipher[:len(parts[i])]
+        cipher = cipher[len(parts[i]):]
+    count = cycle(range(0,n) + range(1,n-1)[::-1])
+    plaintext = ''
+    for i in range(0, cipherlen):
+        index = count.next()
+        plaintext += parts[index][0]
+        parts[index] = parts[index][1:]
+    return plaintext
