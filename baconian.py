@@ -2,7 +2,7 @@
 
 import string
 
-def baconize(str_input):
+def encrypt(str_input):
     str_input = str_input.lower()
     bacon_dictionary = {
         "a":"AAAAA","b":"AAAAB","c":"AAABA","d":"AAABB",
@@ -16,8 +16,8 @@ def baconize(str_input):
     for eachletter in str_input:
         bring_home_the_bacon += bacon_dictionary[eachletter]
     return bring_home_the_bacon
-    
-def de_baconize(str_input):
+
+def decrypt(str_input):
     baconlist = chunks_of_bacon(str_input)
     bacon_dictionary = {
         "AAAAA":"a","AAAAB":"b","AAABA":"c","AAABB":"d",
@@ -29,7 +29,7 @@ def de_baconize(str_input):
         "BBAAA":"y","BBAAB":"z"}
     bring_home_the_bacon = ""
     for bacon in baconlist:
-        bring_home_the_bacon += bacon_dictionary[bacon]             
+        bring_home_the_bacon += bacon_dictionary[bacon]
     return bring_home_the_bacon.upper()
 
 def chunks_of_bacon(l):
