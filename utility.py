@@ -1,4 +1,23 @@
 from math import log10
+import binascii
+
+def hex2b64(h):
+    return binascii.b2a_base64(hex2bin(h))
+
+def str2bin(s):
+    return [ord(x, 'bin') for x in s]
+
+def str2hex(s):
+    return s.encode('hex')
+
+def hex2str(h):
+    return h.decode('hex')
+
+def bin2hex(b):
+    return hex2str(bin2str(b))
+
+def hex2bin(h):
+    return str2bin(hex2str(h))
 
 def normalize(text):
     return ''.join([x for x in text if x.isalpha()]).upper()
@@ -14,7 +33,7 @@ def score_fitness(texts, ngram_file='english_quadgrams.txt'):
     N = sum(ngrams.itervalues())
     for key in ngrams.keys():
         ngrams[key] = log10(float(ngrams[key]) / N)
-    fl = log10(0.01 / N) 
+    fl = log10(0.01 / N)
     scores = []
     for text in texts:
         score = 0
