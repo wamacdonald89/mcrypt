@@ -19,6 +19,12 @@ def bin2hex(b):
 def hex2bin(h):
     return str2bin(hex2str(h))
 
+def xor(buffer1, buffer2):
+    return "".join(["%x" % (int(x,16) ^ int(y,16)) for (x, y) in zip(buffer1, buffer2)])
+
+def repeat_key(key, length):
+    return ''.join([key[i % len(key)] for i in range(0, length)])
+
 def normalize(text):
     return ''.join([x for x in text if x.isalpha()]).upper()
 
