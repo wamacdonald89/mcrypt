@@ -1,4 +1,4 @@
-#baconian-cipher test-vs
+#baconian-cipher
 
 from utility import normalize
 
