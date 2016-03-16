@@ -1,10 +1,12 @@
 #alphabetic-substitution-cipher
 
 import string
+from utility import normalize
+
 
 def encrypt(key, str_input):
     alphabet = string.ascii_uppercase
-    str_input = str_input.upper()
+    str_input = normalize(str_input)
     returnlist = []
     for i, c in enumerate(str_input):
         for j, d in enumerate(alphabet):
@@ -14,7 +16,7 @@ def encrypt(key, str_input):
 
 def decrypt(key, str_input):
     alphabet = string.ascii_uppercase
-    str_input = str_input.upper()
+    str_input = normalize(str_input)
     returnlist = []
     for i, c in enumerate(str_input):
         for j, d in enumerate(key.upper()):
