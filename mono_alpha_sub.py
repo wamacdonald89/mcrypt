@@ -3,7 +3,6 @@
 import string
 from utility import normalize
 
-
 def encrypt(key, str_input):
     alphabet = string.ascii_uppercase
     str_input = normalize(str_input)
