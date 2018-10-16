@@ -1,0 +1,20 @@
+#!/usr/bin/python3
+import sys
+
+def main():
+    if len(sys.argv) < 2:
+        print('[-] Invalid number of arguments')
+        exit(0)
+    if sys.argv[1] == 'rot13':
+        if len(sys.argv) != 4:
+            print('[-] Invalid number of arguments')
+            exit(0)
+        if sys.argv[2] == 'decrypt':
+            from rot13 import decrypt
+            print("[+] Decryption Successful: " + decrypt(sys.argv[3]))
+    else:
+        print("[-] Option not supported at this time")
+
+if __name__ == '__main__':
+    main()
+    exit(0)
