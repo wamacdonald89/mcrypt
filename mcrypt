@@ -1,17 +1,47 @@
 #!/usr/bin/python3
 import sys
+import rot13, caeser
 
 def main():
+    output = ""
+
     if len(sys.argv) < 2:
         print('[-] Invalid number of arguments')
+        print('mcrypt <cipher> <encrypt|decrypt> <text> [key]')
         exit(0)
     if sys.argv[1] == 'rot13':
         if len(sys.argv) != 4:
             print('[-] Invalid number of arguments')
             exit(0)
         if sys.argv[2] == 'decrypt':
-            from rot13 import decrypt
-            print("[+] Decryption Successful: " + decrypt(sys.argv[3]))
+            try:
+                output = rot13.decrypt(sys.argv[3])
+            except:
+                print("[-] Error decrypting. Try again...")
+            print("[+] Decryption Successful: " + output)
+    if sys.argv[1] == 'caeser':
+        if len(sys.argv) < 4:
+            print('[-] Invalid number of arguments')
+            exit(0)
+        if sys.argv[2] == 'decrypt':
+            if len(sys.argv) == 4:
+                try:
+                    output = caeser.decrypt(sys.argv[3])
+                except e:
+                    print("[-] Error decrypting data. Try again...")
+                    print(e)
+                    exit(0)
+            elif len(sys.argv) == 5:
+                try:
+                    output = caeser.decrypt(sys.argv[3], sys.argv[4])
+                except e:
+                    print("[-] Error decrypting data. Try again...")
+                    print(e)
+                    exit(0)
+            else:
+                print("[-] Invalid number of arguments")
+                exit(0)
+            print("[+] Decryption successful: " + output)
     else:
         print("[-] Option not supported at this time")
 

@@ -1,6 +1,6 @@
 from math import log10
 import binascii
-
+import os
 def hex2b64(h):
     return binascii.b2a_base64(hex2bin(h))
 
@@ -32,18 +32,18 @@ def score_fitness(texts, ngram_file='english_quadgrams.txt'):
     if type(texts) is str:
         texts = [texts]
     ngrams = {}
-    for line in open(ngram_file):
+    for line in open(os.path.join(os.path.dirname(__file__), ngram_file)):
         key, count = line.split(' ')
         ngrams[key] = int(count)
     L = len(key)
-    N = sum(ngrams.itervalues())
+    N = sum(ngrams.values())
     for key in ngrams.keys():
         ngrams[key] = log10(float(ngrams[key]) / N)
     fl = log10(0.01 / N)
     scores = []
     for text in texts:
         score = 0
-        for i in xrange(len(text) - L + 1):
+        for i in range(len(text) - L + 1):
             if text[i:i + L] in ngrams:
                 score += ngrams[text[i:i + L]]
             else:
