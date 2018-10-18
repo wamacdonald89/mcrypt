@@ -43,21 +43,22 @@ def decrypt(cipher, alphabet=None, norm=True):
                 i = 0
             i = i + 1
 
-            # Bring cursor up 5 lines
-            sys.stdout.write("\033[F")
-            sys.stdout.write("\033[F")
-            sys.stdout.write("\033[F")
-            sys.stdout.write("\033[F")
-            sys.stdout.write("\033[F")
-
-            print("Current Cipher Alphabet:    " + ''.join(child) + "      ")
-            print("Current Decryption Attempt: " + decrypt(cipher, child)[:40])
-            print("Best Cipher Alphabet:       " + ''.join(parent))
-            print("Best Decryption Attempt:    " + decrypt(cipher, parent)[:40])
-            print("Confidence Level: " + str(i) + "/1000   ")
+            if( i % 2 == 0 ):
+                # Bring cursor up 5 lines
+                sys.stdout.write("\033[F")
+                sys.stdout.write("\033[F")
+                sys.stdout.write("\033[F")
+                sys.stdout.write("\033[F")
+                sys.stdout.write("\033[F")
+            
+                print("Current Cipher Alphabet:    " + ''.join(child) + "      ")
+                print("Current Decryption Attempt: " + decrypt(cipher, child)[:40])
+                print("Best Cipher Alphabet:       " + ''.join(parent))
+                print("Best Decryption Attempt:    " + decrypt(cipher, parent)[:40])
+                print("Confidence Level: " + str(i) + "/1000   ")
 
         print("Local maximum found with: " + ''.join(parent))
-        return decrypt(cipher, parent, false)
+        return decrypt(cipher, parent, False)
     else:
         if norm == True:
             return normalize(cipher).translate(str.maketrans(normalize(alphabet), string.ascii_uppercase))
