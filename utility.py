@@ -1,6 +1,9 @@
 from math import log10
 import binascii
 import os
+from cachetools import cached, TTLCache
+cache = TTLCache(maxsize=100, ttl=300)
+
 def hex2b64(h):
     return binascii.b2a_base64(hex2bin(h))
 
@@ -28,6 +31,7 @@ def repeat_key(key, length):
 def normalize(text):
     return ''.join([x for x in text if x.isalpha()]).upper()
 
+@cached(cache)
 def score_fitness(texts, ngram_file='english_quadgrams.txt'):
     if type(texts) is str:
         texts = [texts]
